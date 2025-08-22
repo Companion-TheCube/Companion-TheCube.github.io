@@ -19,6 +19,31 @@ just_the_docs:
   search_enabled: true
   heading_anchors: true
   show_navbar: true
+  collections:
+    getting-started:
+      name: Getting Started
+      nav_order: 1
+    core:
+      name: TheCube Core
+      nav_order: 2
+    apps:
+      name: App Development
+      nav_order: 3
+    cloud:
+      name: TheCube+ Cloud
+      nav_order: 4
+    hardware:
+      name: Hardware
+      nav_order: 5
+    community:
+      name: Community
+      nav_order: 6
+    api:
+      name: API
+      nav_order: 7
+    thecube-plus:
+      name: TheCube+
+      nav_order: 8
 
 # Optional: use _data/navigation.yml to control sidebar order
 #collections: {}  # (default) keep everything as pages
@@ -82,13 +107,3 @@ collections: {
   }
 }
 
-just_the_docs:
-  collections:
-    - apps
-    - core
-    - cloud
-    - hardware
-    - thecube-plus
-    - community
-    - getting-started
-    - api
