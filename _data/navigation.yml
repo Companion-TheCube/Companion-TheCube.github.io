@@ -31,3 +31,39 @@
       - title: Performance
         url: /core/performance/
 # ...continue similarly for Apps, API, Hardware, TheCube+, SDK, Cloud, Design, Tutorials, Community
+- title: Apps
+  children:
+      - title: Overview
+        url: /apps/
+- title: API
+  children:
+      - title: Overview 
+        url: /api/
+- title: Hardware
+  children:
+      - title: Overview
+        url: /hardware/
+- title: TheCube+
+  children:
+      - title: Overview
+        url: /thecube-plus/
+- title: SDK
+  children:
+      - title: Overview
+        url: /sdk/
+- title: Cloud
+  children:
+      - title: Overview
+        url: /cloud/
+- title: Design
+  children:
+      - title: Overview
+        url: /design/
+- title: Tutorials
+  children:
+      - title: Overview
+        url: /tutorials/
+- title: Community
+  children:
+      - title: Overview
+        url: /community/
