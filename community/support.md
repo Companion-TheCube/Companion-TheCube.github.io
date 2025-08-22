@@ -2,6 +2,7 @@
 title: "Community: Support"
 description: Community support
 layout: default
+parent: Community
 ---
 
 # Community: Support

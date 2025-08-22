@@ -1,7 +1,7 @@
 ---
 title: App Development
 description: How apps run on TheCube, app lifecycle, permissions, and UX.
-nav_order: 3
+nav_order: 4
 has_children: true
 parent: null
 permalink: /apps/

@@ -2,6 +2,7 @@
 title: "Hardware: Sensors"
 description: Hardware sensors
 layout: default
+parent: Hardware
 ---
 
 # Hardware: Sensors

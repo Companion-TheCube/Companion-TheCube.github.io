@@ -1,7 +1,8 @@
 ---
 title: Install
 description: Set up the docs locally and run TheCube docs site; how to install TheCube hardware/software.
-nav_order: 2
+nav_order: 4
+parent: Getting Started
 ---
 
 # Install

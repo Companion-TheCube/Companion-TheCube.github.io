@@ -1,8 +1,9 @@
 ---
-title: "API: Websocket"
-description: API websocket
+title: "API: Unix socket"
+description: API Unix Socket
 layout: default
+parent: CORE API
 ---
-# API: Websocket
+# API: Unix socket
 
 > Placeholder. Replace with real content.

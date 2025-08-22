@@ -1,6 +1,7 @@
 ---
 title: Contributing
 description: How to contribute docs, code, and examples.
+parent: Community
 ---
 
 # Contributing

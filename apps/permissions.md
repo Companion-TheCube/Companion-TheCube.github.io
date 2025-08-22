@@ -2,6 +2,7 @@
 title: Permissions
 description: "Apps: permissions"
 layout: default
+parent: App Development
 ---
 # Permissions
 

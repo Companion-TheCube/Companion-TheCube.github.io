@@ -3,7 +3,12 @@
 // Keep overrides minimal; the theme is already accessible and clean.
 
 :root {
-  --brand-hue: 270; // playful purple-ish
+    --brand-hue: 100; // black
+    --brand-saturation: 0%;
+    --brand-lightness: 10%;
+    $link-color: $blue-000;
+
+
 }
 
 .nav-list .nav-list-item > a:hover {

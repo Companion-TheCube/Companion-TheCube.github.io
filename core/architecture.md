@@ -1,6 +1,7 @@
 ---
 title: Architecture
 description: Layered architecture, processes, and interfaces.
+parent: TheCube Core
 ---
 
 # Architecture

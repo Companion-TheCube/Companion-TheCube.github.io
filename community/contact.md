@@ -2,6 +2,7 @@
 title: "Community: Contact"
 description: Community contact
 layout: default
+parent: Community
 ---
 
 # Community: Contact

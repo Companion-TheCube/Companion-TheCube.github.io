@@ -2,6 +2,7 @@
 title: "SDK: Cpp"
 description: SDK cpp
 layout: default
+parent: SDKs
 ---
 
 # SDK: Cpp

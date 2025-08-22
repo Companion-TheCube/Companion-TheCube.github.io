@@ -2,6 +2,7 @@
 title: App model
 description: "Apps: app-model"
 layout: default
+parent: App Development
 ---
 # App model
 

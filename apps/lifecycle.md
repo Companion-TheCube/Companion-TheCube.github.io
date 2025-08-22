@@ -2,6 +2,7 @@
 title: Lifecycle
 description: "Apps: lifecycle"
 layout: default
+parent: App Development
 ---
 # Lifecycle
 

@@ -1,7 +1,8 @@
 ---
 title: FAQ
 description: Common questions about TheCube, apps, and TheCube+.
-nav_order: 4
+nav_order: 5
+parent: Getting Started
 ---
 
 # FAQ

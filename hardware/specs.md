@@ -2,6 +2,7 @@
 title: "Hardware: Specs"
 description: Hardware specs
 layout: default
+parent: Hardware
 ---
 
 # Hardware: Specs

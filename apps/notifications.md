@@ -2,6 +2,7 @@
 title: Notifications
 description: "Apps: notifications"
 layout: default
+parent: App Development
 ---
 # Notifications
 

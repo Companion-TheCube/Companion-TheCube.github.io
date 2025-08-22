@@ -1,5 +1,5 @@
 ---
-title: API
+title: CORE API
 description: REST and WebSocket endpoints, authentication, and rate limits.
 nav_order: 7
 has_children: true

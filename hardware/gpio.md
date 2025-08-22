@@ -2,6 +2,7 @@
 title: "Hardware: Gpio"
 description: Hardware gpio
 layout: default
+parent: Hardware
 ---
 
 # Hardware: Gpio
