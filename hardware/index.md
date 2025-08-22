@@ -1,9 +1,13 @@
 ---
-title: Hardware Overview
+title: Hardware
 description: Specs, sensors, GPIO, expansion.
+nav_order: 5
+has_children: true
+parent: null
+permalink: /hardware/
 ---
 
-# Hardware Overview
+# Hardware
 
 -   CPU/RAM/Storage
 -   Display

@@ -107,3 +107,43 @@ collections: {
   }
 }
 
+defaults:
+  - scope:
+      type: "getting-started"
+    values:
+      parent: "Getting Started"
+  - scope:
+      type: "core"
+    values:
+      parent: "TheCube Core"
+  - scope:
+      type: "apps"
+    values:
+      parent: "App Development"
+  - scope:
+      path: "built-in"
+      type: "apps"
+    values:
+      parent: "Built-in Apps"
+      grand_parent: "App Development"
+  - scope:
+      type: "cloud"
+    values:
+      parent: "TheCube+ Cloud"
+  - scope:
+      type: "hardware"
+    values:
+      parent: "Hardware"
+  - scope:
+      type: "community"
+    values:
+      parent: "Community"
+  - scope:
+      type: "api"
+    values:
+      parent: "API"
+  - scope:
+      type: "thecube-plus"
+    values:
+      parent: "TheCube+"
+
