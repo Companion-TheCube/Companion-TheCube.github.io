@@ -1,1 +1,5 @@
-/* (paste the custom.js from above) */
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.mermaid) {
+    mermaid.initialize({ startOnLoad: true });
+  }
+});

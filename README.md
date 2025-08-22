@@ -10,3 +10,15 @@ bundle install
 bundle exec jekyll serve
 # open http://127.0.0.1:4000
 ```
+
+## Mermaid diagrams
+
+Mermaid diagrams are supported. Include them in Markdown using fenced code blocks:
+
+````markdown
+```mermaid
+sequenceDiagram
+    Alice->>Bob: Hello Bob
+```
+````
+
