@@ -1,6 +1,6 @@
 ---
 title: Lifecycle
-description: Apps: lifecycle
+description: "Apps: lifecycle"
 layout: default
 ---
 # Lifecycle

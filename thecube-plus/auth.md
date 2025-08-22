@@ -1,5 +1,5 @@
 ---
-title: TheCube+: Auth
+title: "TheCube+: Auth"
 description: TheCube+ auth
 layout: default
 ---

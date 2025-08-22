@@ -1,6 +1,6 @@
 ---
 title: Notifications
-description: Apps: notifications
+description: "Apps: notifications"
 layout: default
 ---
 # Notifications

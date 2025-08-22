@@ -1,5 +1,5 @@
 ---
-title: TheCube+: Quotas
+title: "TheCube+: Quotas"
 description: TheCube+ quotas
 layout: default
 ---

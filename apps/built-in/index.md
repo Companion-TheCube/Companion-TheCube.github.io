@@ -1,6 +1,6 @@
 ---
-title: Built-in Apps
-description: Built-in apps: index
+title: "Built-in Apps"
+description: "Built-in apps: index"
 parent: App Development
 grand_parent: null
 has_children: true

@@ -1,5 +1,5 @@
 ---
-title: Cloud: Architecture
+title: "Cloud: Architecture"
 description: Cloud architecture
 layout: default
 ---

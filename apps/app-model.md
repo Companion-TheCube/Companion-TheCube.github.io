@@ -1,6 +1,6 @@
 ---
 title: App model
-description: Apps: app-model
+description: "Apps: app-model"
 layout: default
 ---
 # App model

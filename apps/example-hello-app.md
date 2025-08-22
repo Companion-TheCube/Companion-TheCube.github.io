@@ -1,5 +1,5 @@
 ---
-title: Example: Hello App
+title: "Example: Hello App"
 description: Minimal app that subscribes to an event and draws on screen.
 ---
 

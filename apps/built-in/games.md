@@ -1,6 +1,6 @@
 ---
-title: Built-in: Games
-description: Built-in apps: games
+title: "Built-in: Games"
+description: "Built-in apps: games"
 layout: default
 ---
 # Built-in: Games

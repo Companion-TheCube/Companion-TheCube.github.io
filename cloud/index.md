@@ -1,5 +1,5 @@
 ---
-title: TheCube+ Cloud
+title: "TheCube+ Cloud"
 description: Cloud index
 nav_order: 4
 has_children: true
