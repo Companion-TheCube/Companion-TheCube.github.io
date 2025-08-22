@@ -19,6 +19,15 @@ just_the_docs:
   search_enabled: true
   heading_anchors: true
   show_navbar: true
+  collections:
+    - apps
+    - core
+    - cloud
+    - hardware
+    - thecube-plus
+    - community
+    - getting-started
+    - api
 
 # Optional: use _data/navigation.yml to control sidebar order
 #collections: {}  # (default) keep everything as pages
@@ -82,13 +91,3 @@ collections: {
   }
 }
 
-just_the_docs:
-  collections:
-    - apps
-    - core
-    - cloud
-    - hardware
-    - thecube-plus
-    - community
-    - getting-started
-    - api
