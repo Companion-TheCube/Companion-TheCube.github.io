@@ -1,7 +1,7 @@
 ---
 title: Security
 description: Permissions, sandboxing, encryption, and auditing.
-parent: TheCube Core
+parent: TheCube CORE
 ---
 
 # Security

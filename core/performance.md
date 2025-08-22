@@ -2,7 +2,7 @@
 title: Performance
 description: "Core: performance"
 layout: default
-parent: TheCube Core
+parent: TheCube CORE
 ---
 
 # Performance

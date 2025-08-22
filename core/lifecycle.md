@@ -2,7 +2,7 @@
 title: Lifecycle
 description: "Core: lifecycle"
 layout: default
-parent: TheCube Core
+parent: TheCube CORE
 ---
 
 # Lifecycle

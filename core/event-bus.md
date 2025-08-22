@@ -1,7 +1,7 @@
 ---
 title: Event Bus
 description: System events, topics, and subscription patterns for apps.
-parent: TheCube Core
+parent: TheCube CORE
 ---
 
 # Event Bus

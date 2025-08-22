@@ -1,7 +1,7 @@
 ---
 title: Configuration
 description: Config files, environment variables, and dynamic settings.
-parent: TheCube Core
+parent: TheCube CORE
 ---
 
 # Configuration

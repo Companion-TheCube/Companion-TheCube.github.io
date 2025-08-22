@@ -2,7 +2,7 @@
 title: Logging
 description: "Core: logging"
 layout: default
-parent: TheCube Core
+parent: TheCube CORE
 ---
 
 # Logging
