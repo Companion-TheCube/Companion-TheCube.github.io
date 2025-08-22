@@ -1,8 +1,10 @@
 ---
 title: Overview
-description: What TheCube is and how to use these docs.
-layout: default
+description: What TheCube is, what’s included, and how to use these docs.
+nav_order: 1
 ---
-# Overview
 
-> Placeholder. Replace with real content.
+# Getting Started
+
+Brief overview of TheCube, the CORE, apps, and TheCube+.
+Link to Install → Quickstart → FAQ.

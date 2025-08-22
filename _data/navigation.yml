@@ -1,1 +1,33 @@
-# (paste the navigation.yml from above or omit to use nav_order)
+- title: Home
+  url: /
+- title: Getting Started
+  children:
+      - title: Overview
+        url: /getting-started/
+      - title: Install
+        url: /getting-started/install/
+      - title: Quickstart
+        url: /getting-started/quickstart/
+      - title: FAQ
+        url: /getting-started/faq/
+- title: TheCube Core
+  children:
+      - title: Overview
+        url: /core/
+      - title: Architecture
+        url: /core/architecture/
+      - title: Boot Sequence
+        url: /core/boot-sequence/
+      - title: Lifecycle
+        url: /core/lifecycle/
+      - title: Event Bus
+        url: /core/event-bus/
+      - title: Config
+        url: /core/config/
+      - title: Logging
+        url: /core/logging/
+      - title: Security
+        url: /core/security/
+      - title: Performance
+        url: /core/performance/
+# ...continue similarly for Apps, API, Hardware, TheCube+, SDK, Cloud, Design, Tutorials, Community

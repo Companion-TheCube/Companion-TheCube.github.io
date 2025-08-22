@@ -1,3 +1,48 @@
-theme: jekyll-theme-minimal
-title: Companion, TheCube Documentation
-description: All the docs for TheCube.
+title: Companion, TheCube Docs
+description: Official documentation for TheCube, TheCube-Core, apps, SDK, and TheCube+
+url: https://docs.4thecube.com
+baseurl: ""                      # keep empty for apex docs site
+
+# Use the Just the Docs theme via remote_theme (works on GitHub Pages)
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+logo: /assets/images/logo.svg
+favicon_ico: /assets/images/logo.svg
+
+# Just-the-Docs options
+just_the_docs:
+  navigation_depth: 3
+  search_enabled: true
+  heading_anchors: true
+  show_navbar: true
+
+# Optional: use _data/navigation.yml to control sidebar order
+collections: {}  # (default) keep everything as pages
+
+# Footer links
+aux_links:
+  "GitHub Repo":
+    - "https://github.com/<your-org>/<your-repo>"
+  "Discord":
+    - "https://discord.gg/WtbhWy82qP"
+  "Kickstarter":
+    - "https://www.kickstarter.com/projects/a-mcd/1425468019"
+aux_links_new_tab: true
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# Exclude junk from the site
+exclude:
+  - .github/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules/
+  - vendor/

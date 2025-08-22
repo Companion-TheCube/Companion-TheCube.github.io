@@ -1,8 +1,10 @@
 ---
 title: Install
-description: Set up hardware/software and local docs preview.
-layout: default
+description: Set up the docs locally and run TheCube docs site; how to install TheCube hardware/software.
+nav_order: 2
 ---
+
 # Install
 
-> Placeholder. Replace with real content.
+- Hardware/firmware prerequisites
+- Local dev for docs: `bundle install && bundle exec jekyll serve`

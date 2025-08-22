@@ -1,8 +1,10 @@
 ---
-title: TheCube+: Index
-description: TheCube+ index
-layout: default
+title: TheCube+ (Cloud)
+description: Feature tiers, quotas, auth, and optional self-hosting.
 ---
-# TheCube+: Index
 
-> Placeholder. Replace with real content.
+# TheCube+ Overview
+
+-   Tiers & quotas
+-   Privacy stance
+-   Self-hosting options (advanced)

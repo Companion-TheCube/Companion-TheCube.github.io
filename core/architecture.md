@@ -1,8 +1,10 @@
 ---
 title: Architecture
-description: Core: architecture
-layout: default
+description: Layered architecture, processes, and interfaces.
 ---
+
 # Architecture
 
-> Placeholder. Replace with real content.
+-   Hardware Layer, Core API Layer, AI Processing Layer, Event System
+-   Process boundaries & IPC
+-   Threading & performance considerations

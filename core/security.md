@@ -1,8 +1,10 @@
 ---
 title: Security
-description: Core: security
-layout: default
+description: Permissions, sandboxing, encryption, and auditing.
 ---
+
 # Security
 
-> Placeholder. Replace with real content.
+-   App permission model
+-   Data-at-rest/in-transit
+-   Audit logs

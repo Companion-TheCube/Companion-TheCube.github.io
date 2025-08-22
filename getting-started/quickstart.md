@@ -1,8 +1,11 @@
 ---
 title: Quickstart
-description: Power up, pair, and say hello.
-layout: default
+description: Your first run: power up, pair, and say hello.
+nav_order: 3
 ---
+
 # Quickstart
 
-> Placeholder. Replace with real content.
+-   Power on sequence
+-   Mobile/Desktop onboarding
+-   First voice command

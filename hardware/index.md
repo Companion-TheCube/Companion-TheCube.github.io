@@ -1,8 +1,10 @@
 ---
-title: Hardware: Index
-description: Hardware index
-layout: default
+title: Hardware Overview
+description: Specs, sensors, GPIO, expansion.
 ---
-# Hardware: Index
 
-> Placeholder. Replace with real content.
+# Hardware Overview
+
+-   CPU/RAM/Storage
+-   Display
+-   Sensors & radios

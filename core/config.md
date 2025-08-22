@@ -1,8 +1,10 @@
 ---
-title: Config
-description: Core: config
-layout: default
+title: Configuration
+description: Config files, environment variables, and dynamic settings.
 ---
-# Config
 
-> Placeholder. Replace with real content.
+# Configuration
+
+- File locations
+- Precedence
+- Secrets handling

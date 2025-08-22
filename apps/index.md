@@ -1,8 +1,10 @@
 ---
-title: Index
-description: Apps: index
-layout: default
+title: App Platform Overview
+description: How apps run on TheCube, app lifecycle, permissions, and UX.
 ---
-# Index
 
-> Placeholder. Replace with real content.
+# App Platform Overview
+
+-   App types
+-   Lifecycles
+-   Distribution/publishing

@@ -1,8 +1,10 @@
 ---
-title: Boot sequence
-description: Core: boot-sequence
-layout: default
+title: Boot Sequence
+description: From power-on to ready: init order, dependency graph, and failure modes.
 ---
-# Boot sequence
 
-> Placeholder. Replace with real content.
+# Boot Sequence
+
+-   Init services
+-   Fallbacks & safe-mode
+-   Logs & diagnostics

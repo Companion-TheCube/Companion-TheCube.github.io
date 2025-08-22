@@ -1,8 +1,9 @@
 ---
 title: FAQ
-description: Common questions and answers.
-layout: default
+description: Common questions about TheCube, apps, and TheCube+.
+nav_order: 4
 ---
+
 # FAQ
 
-> Placeholder. Replace with real content.
+(Seed with common questions; grow over time.)

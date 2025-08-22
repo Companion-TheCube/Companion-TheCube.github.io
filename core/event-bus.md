@@ -1,8 +1,9 @@
 ---
-title: Event bus
-description: Core: event-bus
-layout: default
+title: Event Bus
+description: System events, topics, and subscription patterns for apps.
 ---
-# Event bus
 
-> Placeholder. Replace with real content.
+# Event Bus
+
+-   Topics, payload schemas
+-   QoS & backpressure

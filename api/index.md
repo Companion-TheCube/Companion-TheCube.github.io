@@ -1,8 +1,10 @@
 ---
-title: API: Index
-description: API index
-layout: default
+title: API Overview
+description: REST and WebSocket endpoints, authentication, and rate limits.
 ---
-# API: Index
 
-> Placeholder. Replace with real content.
+# API Overview
+
+- Auth
+- REST vs WebSocket
+- Versioning and deprecation policy

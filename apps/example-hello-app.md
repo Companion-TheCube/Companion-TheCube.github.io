@@ -1,8 +1,9 @@
 ---
-title: Example hello app
-description: Apps: example-hello-app
-layout: default
+title: Example: Hello App
+description: Minimal app that subscribes to an event and draws on screen.
 ---
-# Example hello app
 
-> Placeholder. Replace with real content.
+# Example: Hello App
+
+-   “Hello world” with build/run steps
+-   Links to SDKs
