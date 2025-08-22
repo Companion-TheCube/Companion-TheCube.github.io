@@ -1,8 +1,13 @@
 ---
-title: Cloud: Index
+title: TheCube+ Cloud
 description: Cloud index
+nav_order: 4
+has_children: true
+parent: null
+permalink: /cloud/
 layout: default
 ---
-# Cloud: Index
+
+# TheCube+ Cloud
 
 > Placeholder. Replace with real content.
