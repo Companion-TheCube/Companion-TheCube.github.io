@@ -1,0 +1,15 @@
+/* (paste the custom.scss from above) */
+// This file is automatically picked up by Just-the-Docs
+// Keep overrides minimal; the theme is already accessible and clean.
+
+:root {
+  --brand-hue: 270; // playful purple-ish
+}
+
+.nav-list .nav-list-item > a:hover {
+  filter: brightness(1.1);
+}
+
+.site-title {
+  letter-spacing: 0.2px;
+}
