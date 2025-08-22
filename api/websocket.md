@@ -1,5 +1,5 @@
 ---
-title: API: Websocket
+title: "API: Websocket"
 description: API websocket
 layout: default
 ---

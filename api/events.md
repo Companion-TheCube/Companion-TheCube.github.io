@@ -1,5 +1,5 @@
 ---
-title: API: Events
+title: "API: Events"
 description: API events
 layout: default
 ---

@@ -1,5 +1,5 @@
 ---
-title: API Schemas
+title: "API: Schemas"
 description: Event and payload schemas.
 layout: default
 ---

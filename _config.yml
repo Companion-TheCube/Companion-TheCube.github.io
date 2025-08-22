@@ -15,43 +15,13 @@ favicon_ico: /assets/images/logo.svg
 
 # Just-the-Docs options
 just_the_docs:
-  navigation_depth: 3
+  navigation_depth: 2
   search_enabled: true
   heading_anchors: true
   show_navbar: true
-  navigation:
-    - title: Getting Started
-      url: /getting-started/
-      children:
-        - title: Quickstart
-          url: /getting-started/quickstart/
-        - title: FAQ
-          url: /getting-started/faq/
-    - title: TheCube Core
-      url: /core/
-      children:
-        - title: Overview
-          url: /core/
-        - title: Architecture
-          url: /core/architecture/
-        - title: Boot Sequence
-          url: /core/boot-sequence/
-        - title: Lifecycle
-          url: /core/lifecycle/
-        - title: Event Bus
-          url: /core/event-bus/
-        - title: Config
-          url: /core/config/
-        - title: Logging
-          url: /core/logging/
-        - title: Security
-          url: /core/security/
-        - title: Performance
-          url: /core/performance/
-    # ...continue similarly for Apps, API, Hardware, TheCube+, SDK, Cloud, Design, Tutorials, Community
 
 # Optional: use _data/navigation.yml to control sidebar order
-collections: {}  # (default) keep everything as pages
+#collections: {}  # (default) keep everything as pages
 
 # Footer links
 aux_links:
@@ -77,45 +47,48 @@ exclude:
   - node_modules/
   - vendor/
 
+collections: {
+  "apps": {
+    "output": true,
+    "permalink": "/apps/:path/"
+  },
+  "core": {
+    "output": true,
+    "permalink": "/core/:path/"
+  },
+  "cloud": {
+    "output": true,
+    "permalink": "/cloud/:path/"
+  },
+  "hardware": {
+    "output": true,
+    "permalink": "/hardware/:path/"
+  },
+  "thecube-plus": {
+    "output": true,
+    "permalink": "/thecube-plus/:path/"
+  },
+  "community": {
+    "output": true,
+    "permalink": "/community/:path/"
+  },
+  "getting-started": {
+    "output": true,
+    "permalink": "/getting-started/:path/"
+  },
+  "api": {
+    "output": true,
+    "permalink": "/api/:path/"
+  }
+}
 
-# Collections (optional but tidy). Each gets grouped content + permalinks.
-collections:
-  core:
-    output: true
-    permalink: /core/:path/
-  apps:
-    output: true
-    permalink: /apps/:path/
-  cloud:
-    output: true
-    permalink: /cloud/:path/
-  hardware:
-    output: true
-    permalink: /hardware/:path/
-  dev:
-    output: true
-    permalink: /dev/:path/
-  marketing:
-    output: true
-    permalink: /marketing/:path/
-
-# Defaults (so you don't repeat front-matter)
-defaults:
-  - scope: {path: "", type: core}
-    values: {layout: default, parent: "CORE"}
-  - scope: {path: "", type: apps}
-    values: {layout: default, parent: "Apps"}
-  - scope: {path: "", type: cloud}
-    values: {layout: default, parent: "TheCube+"}
-  - scope: {path: "", type: hardware}
-    values: {layout: default, parent: "Hardware"}
-  - scope: {path: "", type: dev}
-    values: {layout: default, parent: "Developer"}
-  - scope: {path: "", type: marketing}
-    values: {layout: default, parent: "Marketing"}
-
-# (Optional) Add “Edit on GitHub” link
-# just_the_docs:
-#   repository_url: https://github.com/<you>/<repo>
-#   last_edit_timestamp: true
-#   last_edit_time_format: "%b %e, %Y at %I:%M %p"
+just_the_docs:
+  collections:
+    - apps
+    - core
+    - cloud
+    - hardware
+    - thecube-plus
+    - community
+    - getting-started
+    - api

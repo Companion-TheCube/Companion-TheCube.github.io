@@ -1,0 +1,14 @@
+# _data/navigation.yml
+main:
+  - title: "Getting Started"
+    url: /getting-started/
+  - title: "TheCube Core"
+    url: /core/
+  - title: "App Development"
+    url: /apps/
+  - title: "TheCube+ Cloud"
+    url: /cloud/
+  - title: "Hardware"
+    url: /hardware/
+  - title: "Community"
+    url: /community/

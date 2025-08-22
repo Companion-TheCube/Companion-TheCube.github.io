@@ -1,5 +1,5 @@
 ---
-title: TheCube+: Pricing
+title: "TheCube+: Pricing"
 description: TheCube+ pricing
 layout: default
 ---
