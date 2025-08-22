@@ -1,8 +1,9 @@
 ---
-title: Tutorial: Build Your First App
-description: Scaffold, code, test, publish.
+title: "Tutorial: Build first app"
+description: Tutorial build-first-app
+layout: default
 ---
 
-# Build Your First App
+# Tutorial: Build first app
 
-Step-by-step walkthrough with screenshots/gifs (to add later).
+> Placeholder. Replace with real content.

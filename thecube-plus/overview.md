@@ -1,5 +1,5 @@
 ---
-title: TheCube+: Overview
+title: "TheCube+: Overview"
 description: TheCube+ overview
 layout: default
 ---

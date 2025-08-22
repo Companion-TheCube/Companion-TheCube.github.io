@@ -1,5 +1,5 @@
 ---
-title: Cloud: Data privacy
+title: "Cloud: Data privacy"
 description: Cloud data-privacy
 layout: default
 ---

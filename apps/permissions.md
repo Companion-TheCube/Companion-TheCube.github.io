@@ -1,6 +1,6 @@
 ---
 title: Permissions
-description: Apps: permissions
+description: "Apps: permissions"
 layout: default
 ---
 # Permissions

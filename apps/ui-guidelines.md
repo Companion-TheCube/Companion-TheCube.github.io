@@ -1,6 +1,6 @@
 ---
 title: Ui guidelines
-description: Apps: ui-guidelines
+description: "Apps: ui-guidelines"
 layout: default
 ---
 # Ui guidelines

@@ -1,5 +1,5 @@
 ---
-title: TheCube+: Api
+title: "TheCube+: Api"
 description: TheCube+ api
 layout: default
 ---

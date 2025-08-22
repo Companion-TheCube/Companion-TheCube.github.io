@@ -1,6 +1,6 @@
 ---
 title: Quickstart
-description: Your first run: power up, pair, and say hello.
+description: "Your first run: power up, pair, and say hello."
 nav_order: 3
 ---
 

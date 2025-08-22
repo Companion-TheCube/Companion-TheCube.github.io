@@ -1,5 +1,5 @@
 ---
-title: TheCube+: Self hosting
+title: "TheCube+: Self hosting"
 description: TheCube+ self-hosting
 layout: default
 ---
