@@ -7,6 +7,8 @@ nav_order: 1
 
 # Companion, TheCube Documentation
 
+### Please note: This documentation is a work in progress. Some sections may be incomplete or missing. We appreciate your patience as we continue to build out the content.
+
 Welcome to the official documentation site for **Companion, TheCube** — an open, modular desktop companion designed to blend **hardware, software, and personality** into one platform.  
 
 Whether you’re a new user getting started, an app developer exploring the SDK, or a hardware tinkerer building add-ons, this site will guide you through everything TheCube can do.
