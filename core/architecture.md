@@ -61,7 +61,7 @@ flowchart BT
         AUDIO["Speakers + Mics"]
         MM["mmWave Presence"]
         NFC["NFC"]
-        BRIDGES["SPI→I²C / SPI→UART / CAN"]
+        BRIDGES["IO Bridge (RP2354): GPIO / I²C / SPI / UART / PIO / CAN"]
         LCD --- NFC --- AUDIO --- MM --- BRIDGES
   end
     CORE <--> APPS
@@ -72,11 +72,11 @@ flowchart BT
 
 **Key ideas**
 
--   **Isolation by layers.** Apps never touch raw hardware—everything goes through Core APIs.
--   **Two IPC styles.** HTTP over localhost/IPC for multi‑client requests; JSON‑RPC over per‑app Unix sockets for low‑latency, bidirectional RPC.
--   **Event‑driven.** The Event Bus is the backbone for system → app and app → system messages.
--   **Local‑first.** Voice/STT/intent can run locally, with **TheCube+** as an optional augmentation.
--   **Safe updates.** A/B Core images with automatic rollback.
+- **Isolation by layers.** Apps never touch raw hardware—everything goes through Core APIs.
+- **Two IPC styles.** HTTP over localhost/IPC for multi‑client requests; JSON‑RPC over per‑app Unix sockets for low‑latency, bidirectional RPC.
+- **Event‑driven.** The Event Bus is the backbone for system → app and app → system messages.
+- **Local‑first.** Voice/STT/intent can run locally, with **TheCube+** as an optional augmentation.
+- **Safe updates.** A/B Core images with automatic rollback.
 
 ---
 
@@ -84,63 +84,69 @@ flowchart BT
 
 ### Boot Manager / Loader
 
--   Performs minimal init, chooses active A/B slot, verifies signatures, and launches Core.
--   Exposes **safe mode** if boot fails repeatedly.
+- Performs minimal init, chooses active A/B slot, verifies signatures, and launches Core.
+- Exposes **safe mode** if boot fails repeatedly.
 
 ### Config Service
 
--   Central store for device settings, app permissions, and feature flags.
--   Sources: `/etc/thecube/*.yaml` (system defaults), `/var/lib/thecube/*.yaml` (mutable), and voluntary overrides from the web UI.
+- Central store for device settings, app permissions, and feature flags.
+- Sources: `/etc/thecube/*.yaml` (system defaults), `/var/lib/thecube/*.yaml` (mutable), and voluntary overrides from the web UI.
 
 ### Permissions & Sandboxing
 
--   App capabilities declared in manifest and enforced at runtime.
--   systemd unit templates + Landlock profiles restrict FS, network, and device access.
+- App capabilities declared in manifest and enforced at runtime.
+- systemd unit templates + Landlock profiles restrict FS, network, and device access.
 
 ### Hardware Abstraction (HWA)
 
--   Unified, async APIs for **Display, Audio, Sensors, NFC, Bridges (I²C/SPI/UART/CAN)**.
--   Bridges are mediated (apps never open SoC buses directly).
+- Unified, async APIs for **Display, Audio, Sensors, NFC, and IO Bridge interfaces (GPIO/I²C/SPI/UART/PIO/CAN)**.
+- All expansion I/O is mediated through the **IO Bridge** — an RP2354-based coprocessor connected via SPI.
+- Apps never open SoC buses directly; the CORE routes requests through the bridge using the CubeBridge Protocol (CBP).
+- The bridge provides **rate isolation**: a slow downstream peripheral (e.g., 125 kHz SPI target) cannot stall unrelated endpoints.
+- The host-side abstraction layer (`src/hardware/io_bridge/`) translates high-level operations into CBP endpoint requests.
+- Higher-level code does not need to know whether an operation is served by a native Pi peripheral or by the bridge, except where required by system policy.
+
+See [Hardware: Expansion & IO Bridge](/hardware/expansion/) for the full bridge architecture.
 
 ### Graphics (SDL2/KMS)
 
--   Direct DRM/KMS output for the 720×720 panel.
--   Provides primitives for **characters**, scenes, and notification toasts.
+- Direct DRM/KMS output for the 720×720 panel.
+- Provides primitives for **characters**, scenes, and notification toasts.
 
 ### Audio Pipeline
 
--   Mic → VAD → Wakeword → STT (local or cloud) → Intent Router.
--   TTS out; tone/beep generator for low‑latency feedback.
+- Mic → VAD → Wakeword → STT (local or cloud) → Intent Router.
+- TTS out; tone/beep generator for low‑latency feedback.
 
 ### Event Bus
 
--   Pub/sub within Core & apps; JSON envelopes; backpressure and delivery guarantees.
+- Pub/sub within Core & apps; JSON envelopes; backpressure and delivery guarantees.
 
 ### IPC Servers
 
--   **HTTP (localhost or shared IPC socket)**: multi‑client, simple REST.
--   **JSON‑RPC (per‑app Unix socket)**: function calls, streams, and callbacks.
+- **HTTP (localhost or shared IPC socket)**: multi‑client, simple REST.
+- **JSON‑RPC (per‑app Unix socket)**: function calls, streams, and callbacks.
 
 ### App Manager
 
--   Install/enable/update/remove; health checks; crash policy; resource budgets.
+- Install/enable/update/remove; health checks; crash policy; resource budgets.
 
 ### Updater (A/B)
 
--   Download, verify, stage to inactive slot; flip on reboot; rollback on failure.
+- Download, verify, stage to inactive slot; flip on reboot; rollback on failure.
 
 ### Logging & Telemetry
 
--   Structured logs (spdlog); redaction rules; rotating files; optional Cloud export.
+- Structured logs (spdlog); redaction rules; rotating files; optional Cloud export.
 
 ---
 
 ## Processes & Boundaries
 
--   **Core** runs as a supervised service (`thecube-core.service`).
--   **Apps** run as individual systemd services with generated units (`cube-app-<name>.service`).
--   **Per‑app Unix socket** at a managed path, permissions set by Core at app launch.
--   **No direct /dev access** by apps unless granted via capabilities.
+- **Core** runs as a supervised service (`thecube-core.service`).
+- **Apps** run as individual systemd services with generated units (`cube-app-<name>.service`).
+- **Per‑app Unix socket** at a managed path, permissions set by Core at app launch.
+- **No direct /dev access** by apps unless granted via capabilities.
 
 ---
 
@@ -148,17 +154,17 @@ flowchart BT
 
 ### HTTP (shared)
 
--   **Default port:** 55280 (localhost) or **shared Unix socket** for intra‑box traffic.
--   Example endpoints (subset):
-    -   `GET /getCubeSocketPath` → returns app’s JSON‑RPC socket path assigned by Core.
-    -   `POST /FunctionRegistry-registerFunction` → register one or more functions (metadata below).
-    -   `POST /events/publish` → publish app events onto the Event Bus.
-    -   `GET /config/:key` / `PUT /config/:key` → read/write app‑scoped config.
+- **Default port:** 55280 (localhost) or **shared Unix socket** for intra‑box traffic.
+- Example endpoints (subset):
+    - `GET /getCubeSocketPath` → returns app’s JSON‑RPC socket path assigned by Core.
+    - `POST /FunctionRegistry-registerFunction` → register one or more functions (metadata below).
+    - `POST /events/publish` → publish app events onto the Event Bus.
+    - `GET /config/:key` / `PUT /config/:key` → read/write app‑scoped config.
 
 ### JSON‑RPC (per app)
 
--   **Transport:** Unix domain socket at `…/apps/<name>/rpc.sock` (path provided by Core).
--   **Use cases:** low‑latency callbacks, streams (e.g., frame or audio chunks), bidirectional function calls.
+- **Transport:** Unix domain socket at `…/apps/<name>/rpc.sock` (path provided by Core).
+- **Use cases:** low‑latency callbacks, streams (e.g., frame or audio chunks), bidirectional function calls.
 
 #### Function Registry — metadata (draft)
 
@@ -179,13 +185,13 @@ flowchart BT
 }
 ```
 
--   Core stores function specs; makes them discoverable; handles timeouts; applies capability checks.
+- Core stores function specs; makes them discoverable; handles timeouts; applies capability checks.
 
 ---
 
 ## Event Bus Model
 
--   **Envelope**
+- **Envelope**
 
 ```json
 {
@@ -197,13 +203,13 @@ flowchart BT
 }
 ```
 
--   **Topics** (examples)
-    -   `system.presence`, `system.network`, `system.power`
-    -   `ui.toast`, `ui.banner`
-    -   `audio.wake`, `audio.stt.partial`, `audio.stt.final`
-    -   `app.<id>.event.*` (namespaced per app)
--   **Delivery**: in‑proc pub/sub with bounded queues; backpressure drops low‑priority events first (configurable).
--   **Subscriptions**: apps declare topic filters at registration; Core enforces quotas.
+- **Topics** (examples)
+    - `system.presence`, `system.network`, `system.power`
+    - `ui.toast`, `ui.banner`
+    - `audio.wake`, `audio.stt.partial`, `audio.stt.final`
+    - `app.<id>.event.*` (namespaced per app)
+- **Delivery**: in‑proc pub/sub with bounded queues; backpressure drops low‑priority events first (configurable).
+- **Subscriptions**: apps declare topic filters at registration; Core enforces quotas.
 
 ---
 
@@ -255,35 +261,35 @@ If local STT/intent is disabled or insufficient, Core calls cloud services via T
 
 ## Configuration Model (draft)
 
--   **Files**
-    -   System defaults: `/etc/thecube/*.yaml`
-    -   Device state: `/var/lib/thecube/*.yaml`
-    -   Per‑app config: `/var/lib/thecube/apps/<id>/config.yaml`
--   **Precedence**: app overrides → device state → system defaults.
--   **Runtime API**: `GET/PUT /config/:key` (HTTP), or `config.get/config.set` (RPC).
+- **Files**
+    - System defaults: `/etc/thecube/*.yaml`
+    - Device state: `/var/lib/thecube/*.yaml`
+    - Per‑app config: `/var/lib/thecube/apps/<id>/config.yaml`
+- **Precedence**: app overrides → device state → system defaults.
+- **Runtime API**: `GET/PUT /config/:key` (HTTP), or `config.get/config.set` (RPC).
 
 ---
 
 ## Performance & Responsiveness
 
--   **Targets**
-    -   First‑boot to ready: < 20s
-    -   Wakeword → TTS start: < 500 ms (local), < 1.5 s (cloud)
-    -   Idle CPU: < 5%
--   **Levers**
-    -   Pin hot paths (audio, wakeword) to isolated threads/cores.
-    -   Zero‑copy buffers for audio/video.
-    -   DRM/KMS direct to avoid compositor overhead.
-    -   Backpressure policy on Event Bus + RPC timeouts.
+- **Targets**
+    - First‑boot to ready: < 20s
+    - Wakeword → TTS start: < 500 ms (local), < 1.5 s (cloud)
+    - Idle CPU: < 5%
+- **Levers**
+    - Pin hot paths (audio, wakeword) to isolated threads/cores.
+    - Zero‑copy buffers for audio/video.
+    - DRM/KMS direct to avoid compositor overhead.
+    - Backpressure policy on Event Bus + RPC timeouts.
 
 ---
 
 ## Security & Privacy (Core summary)
 
--   **Capabilities** per app (display, audio, sensors, bridges, network, storage‑scoped).
--   **Sandboxing** with systemd + Landlock; drop privileges; no raw bus access.
--   **Secrets** stored via kernel keyring or file‑based vault; never in logs.
--   **Telemetry** is opt‑in; redaction rules enforced at source.
+- **Capabilities** per app (display, audio, sensors, bridges, network, storage‑scoped).
+- **Sandboxing** with systemd + Landlock; drop privileges; no raw bus access.
+- **Secrets** stored via kernel keyring or file‑based vault; never in logs.
+- **Telemetry** is opt‑in; redaction rules enforced at source.
 
 (Deep dive: see [Security](/core/security/))
 
@@ -291,27 +297,27 @@ If local STT/intent is disabled or insufficient, Core calls cloud services via T
 
 ## Observability
 
--   **Logging**: structured (JSON), per‑service files under `/var/log/thecube/` with rotation.
--   **Debug flags**: `--trace` on Core and app launchers; dynamic log levels via config.
--   **Health**: `GET /health` (HTTP) returns component statuses; per‑app liveness via systemd.
+- **Logging**: structured (JSON), per‑service files under `/var/log/thecube/` with rotation.
+- **Debug flags**: `--trace` on Core and app launchers; dynamic log levels via config.
+- **Health**: `GET /health` (HTTP) returns component statuses; per‑app liveness via systemd.
 
 ---
 
 ## Extension Points
 
--   **Function Registry**: declare callable units with schemas, timeouts, and idempotency.
--   **Event Bus**: publish/subscribe to system topics; request UI surfaces (toasts/banners).
--   **Hardware APIs**: display primitives, audio sink/source, and bridged I/O transactions.
+- **Function Registry**: declare callable units with schemas, timeouts, and idempotency.
+- **Event Bus**: publish/subscribe to system topics; request UI surfaces (toasts/banners).
+- **Hardware APIs**: display primitives, audio sink/source, and bridged I/O transactions.
 
 ---
 
 ## See Also
 
--   [Install](/core/install/)
--   [Boot Sequence](/core/boot-sequence/)
--   [Configuration](/core/configuration/)
--   [Event Bus](/core/event-bus/)
--   [Lifecycle](/core/lifecycle/)
--   [Logging](/core/logging/)
--   [Performance](/core/performance/)
--   [Security](/core/security/)
+- [Install](/core/install/)
+- [Boot Sequence](/core/boot-sequence/)
+- [Configuration](/core/configuration/)
+- [Event Bus](/core/event-bus/)
+- [Lifecycle](/core/lifecycle/)
+- [Logging](/core/logging/)
+- [Performance](/core/performance/)
+- [Security](/core/security/)
