@@ -17,6 +17,7 @@ If you think of TheCube as a small operating system, the Core is the layer that:
 - Provides the **event bus** for communication
 - Enforces **permissions and sandboxing**
 - Connects apps to hardware (sensors, display, audio, expansion ports)
+- Routes speech workloads to remote services for speech recognition, intent detection, and text-to-speech
 - Handles configuration, logging, and updates
 
 This section explains how the CORE works and how developers can interact with it.

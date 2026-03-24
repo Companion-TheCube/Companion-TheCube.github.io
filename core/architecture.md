@@ -41,7 +41,7 @@ flowchart BT
         IPC["IPC Servers (HTTP + JSON‑RPC)"]
         APPSVC["App Manager"]
         GFX["Graphics (SDL2/KMS)"]
-        AUD["Audio Pipeline (VAD, TTS hooks)"]
+        AUD["Audio Pipeline (VAD, remote ASR/intent/TTS hooks)"]
         UPDATE["Updater (A/B)"]
         LOG["Logging/Telemetry"]
         BOOTMGR --- CFG --- PM --- HWA --- EVBUS --- IPC --- APPSVC --- GFX --- AUD --- UPDATE --- LOG
@@ -75,7 +75,7 @@ flowchart BT
 - **Isolation by layers.** Apps never touch raw hardware—everything goes through Core APIs.
 - **Two IPC styles.** HTTP over localhost/IPC for multi‑client requests; JSON‑RPC over per‑app Unix sockets for low‑latency, bidirectional RPC.
 - **Event‑driven.** The Event Bus is the backbone for system → app and app → system messages.
-- **Local‑first.** Voice/STT/intent can run locally, with **TheCube+** as an optional augmentation.
+- **Remote voice AI.** Speech recognition, intent detection, and text-to-speech are handled by remote services; Core handles capture, orchestration, and local playback/rendering.
 - **Safe updates.** A/B Core images with automatic rollback.
 
 ---
@@ -115,8 +115,8 @@ See [Hardware: Expansion & IO Bridge](/hardware/expansion/) for the full bridge 
 
 ### Audio Pipeline
 
-- Mic → VAD → Wakeword → STT (local or cloud) → Intent Router.
-- TTS out; tone/beep generator for low‑latency feedback.
+- Mic → VAD → Wakeword → remote transcription/intent pipeline.
+- Remote-generated response audio/text returned to Core for local playback/rendering; tone/beep remains available for low-latency feedback.
 
 ### Event Bus
 
@@ -206,7 +206,7 @@ See [Hardware: Expansion & IO Bridge](/hardware/expansion/) for the full bridge 
 - **Topics** (examples)
     - `system.presence`, `system.network`, `system.power`
     - `ui.toast`, `ui.banner`
-    - `audio.wake`, `audio.stt.partial`, `audio.stt.final`
+    - `audio.wake`, `audio.stt.partial`, `audio.stt.final` (originating from remote transcription events)
     - `app.<id>.event.*` (namespaced per app)
 - **Delivery**: in‑proc pub/sub with bounded queues; backpressure drops low‑priority events first (configurable).
 - **Subscriptions**: apps declare topic filters at registration; Core enforces quotas.
@@ -232,30 +232,32 @@ sequenceDiagram
   CoreRPC-->>App: READY (capabilities, event subscription ack)
 ```
 
-### 2) Voice command (local‑first)
+### 2) Voice command (remote AI)
 
 ```mermaid
 %%{init: {'theme': 'dark', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'monospace' }}}%%
 sequenceDiagram
   participant Mic
   participant Core
-  participant STT
-  participant Intent
+    participant RemoteASR as Remote ASR
+    participant RemoteIntent as Remote Intent
   participant App
 
   Mic->>Core: audio frames
-  Core->>STT: stream (local engine)
-  STT-->>Core: transcript
-  Core->>Intent: classify + slot fill
-  Intent-->>Core: function call plan
+    Core->>RemoteASR: stream audio
+    RemoteASR-->>Core: transcript
+    Core->>RemoteIntent: classify + slot fill
+    RemoteIntent-->>Core: function call plan
   Core->>App: JSON‑RPC call (e.g., calendar.getAgenda)
   App-->>Core: result
-  Core-->>Mic: TTS out + optional UI render
+    Core->>RemoteASR: request response synthesis
+    RemoteASR-->>Core: speech/text response
+    Core-->>Mic: play response + optional UI render
 ```
 
-### 3) Cloud assist (optional TheCube+)
+### 3) Cloud/service integration
 
-If local STT/intent is disabled or insufficient, Core calls cloud services via TheCube+; the rest of the flow is the same.
+Voice AI is always remote in the current architecture. Core may still use additional TheCube+ services for account-linked features, sync/webhooks, and extended intelligence.
 
 ---
 
@@ -274,7 +276,7 @@ If local STT/intent is disabled or insufficient, Core calls cloud services via T
 
 - **Targets**
     - First‑boot to ready: < 20s
-    - Wakeword → TTS start: < 500 ms (local), < 1.5 s (cloud)
+    - Wakeword → first remote-audio response start: < 1.5 s
     - Idle CPU: < 5%
 - **Levers**
     - Pin hot paths (audio, wakeword) to isolated threads/cores.

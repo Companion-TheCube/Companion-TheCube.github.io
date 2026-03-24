@@ -30,8 +30,8 @@ Events are organized by topic. Examples:
 | `ui.toast`                | Apps/Core | Toast notification requests                      |
 | `ui.banner`               | Apps/Core | Banner notification requests                     |
 | `audio.wake`              | Core      | Wakeword detected                                |
-| `audio.stt.partial`       | Core      | Partial STT transcript                           |
-| `audio.stt.final`         | Core      | Final STT transcript                             |
+| `audio.stt.partial`       | Core      | Partial transcript from remote transcription     |
+| `audio.stt.final`         | Core      | Final transcript from remote transcription       |
 | `app.<id>.event.*`        | Apps      | App-namespaced events                            |
 
 ## Envelope Format
